@@ -1,5 +1,6 @@
 const database = require('../database/database');
 const NotFoundController = require('./NotFound');
+const { HTTP_STATUS_CODES } = require('../constants/http');
 
 class Notes {
   constructor() {
@@ -26,7 +27,7 @@ class Notes {
       bold,
       italic,
     });
-    res.status(200).json({
+    res.status(HTTP_STATUS_CODES.OK).json({
       message: 'Note created successfully.',
       note: {
         id: newId,
@@ -46,7 +47,9 @@ class Notes {
       database.notes = database.notes.map((note) =>
         note.id !== noteId ? note : { ...note, title, content, bold, italic }
       );
-      res.status(200).json({ message: 'Note updated successfully.' });
+      res
+        .status(HTTP_STATUS_CODES.OK)
+        .json({ message: 'Note updated successfully.' });
     } else this.notFoundController.handleNotFound(req, res, next);
   };
 
@@ -55,7 +58,9 @@ class Notes {
     const note = database.notes.find((note) => note.id === noteId);
     if (note) {
       database.notes = database.notes.filter((note) => note.id !== noteId);
-      res.status(200).json({ message: 'Note deleted successfully.' });
+      res
+        .status(HTTP_STATUS_CODES.OK)
+        .json({ message: 'Note deleted successfully.' });
     } else this.notFoundController.handleNotFound(req, res, next);
   };
 
@@ -65,7 +70,9 @@ class Notes {
 
   deleteNotes = (_req, res, _next) => {
     database.notes = [];
-    res.status(200).json({ message: 'Notes deleted successfully.' });
+    res
+      .status(HTTP_STATUS_CODES.OK)
+      .json({ message: 'Notes deleted successfully.' });
   };
 }
 
