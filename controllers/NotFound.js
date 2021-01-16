@@ -1,4 +1,4 @@
-class NotFoundController {
+class NotFound {
   handleNotFound = (_req, res, _next) => {
     res
       .status(404)
@@ -6,4 +6,4 @@ class NotFoundController {
   };
 }
 
-module.exports = NotFoundController;
+module.exports = NotFound;

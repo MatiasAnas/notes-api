@@ -1,6 +1,6 @@
 const database = require('../database/database');
 
-class BoardController {
+class Board {
   constructor(route, parentRoute) {
     this.route = route;
     this.parentRoute = parentRoute;
@@ -15,4 +15,4 @@ class BoardController {
   };
 }
 
-module.exports = BoardController;
+module.exports = Board;

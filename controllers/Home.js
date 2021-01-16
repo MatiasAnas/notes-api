@@ -1,4 +1,4 @@
-class HomeController {
+class Home {
   constructor(route, parentRoute) {
     this.route = route;
     this.parentRoute = parentRoute;
@@ -12,4 +12,4 @@ class HomeController {
   };
 }
 
-module.exports = HomeController;
+module.exports = Home;

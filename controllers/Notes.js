@@ -1,7 +1,7 @@
 const database = require('../database/database');
 const NotFoundController = require('./NotFound');
 
-class NotesController {
+class Notes {
   constructor() {
     this.notFoundController = new NotFoundController();
   }
@@ -26,8 +26,16 @@ class NotesController {
       bold,
       italic,
     });
-    //TO-DO: Return created note.
-    res.status(200).json({ message: 'Note created successfully.' });
+    res.status(200).json({
+      message: 'Note created successfully.',
+      note: {
+        id: newId,
+        title,
+        content,
+        bold,
+        italic,
+      },
+    });
   };
 
   updateNote = (req, res, next) => {
@@ -61,4 +69,4 @@ class NotesController {
   };
 }
 
-module.exports = NotesController;
+module.exports = Notes;
