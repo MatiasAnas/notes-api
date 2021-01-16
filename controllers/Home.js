@@ -7,7 +7,7 @@ class Home {
   getHome = (_req, res, _next) => {
     res.render('home', {
       path: `${this.parentRoute || ''}${this.route}`,
-      contentTitle: 'Api Information',
+      contentTitle: 'Api Description',
     });
   };
 }
