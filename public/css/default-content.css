@@ -1,0 +1,11 @@
+.default-content__container {
+  padding: 20px;
+}
+
+.default-content__container__title {
+  font-size: xx-large;
+}
+
+.default-content__container__title:not(:last-child) {
+  margin-bottom: 20px;
+}

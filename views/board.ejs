@@ -1,0 +1,33 @@
+<%- include('includes/head-start.ejs') %>
+  <%- include('includes/default-metadata.ejs') %>
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/default-content.css">
+  <link rel="stylesheet" href="/css/board.css">
+
+<%- include('includes/body-start.ejs') %>
+  <%- include('includes/navbar.ejs') %>
+  <%- include('includes/default-content-start.ejs') %>
+    <% if (notes.length === 0) { %>
+      <span class="primary-label">No notes stored yet!</span>
+    <% } else { %>
+      <div class="board__notes-list">
+        <% for (let note of notes) { %>
+          <div class="board__notes-list__item">
+            <div class="board__notes-list__item__data-row">
+              <div class="board__notes-list__item__data-row__key bold-label">ID:</div>
+              <div><%= note.id %></div>
+            </div>
+            <div class="board__notes-list__item__data-row">
+              <div class="board__notes-list__item__data-row__key bold-label">Title:</div>
+              <div><%= note.title %></div>
+            </div>
+            <div class="board__notes-list__item__data-row">
+              <div class="<%= `${note.bold && 'bold-label'} ${note.italic && 'italic-label'}` %>"><%= `${note.content || '# No Content'}` %></div>
+            </div>
+          </div>
+        <% }; %>
+      </div>
+    <% } %>
+  <%- include('includes/default-content-end.ejs') %>
+
+<%- include('includes/end.ejs') %>

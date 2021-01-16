@@ -1,0 +1,40 @@
+.board__notes-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.board__notes-list__item {
+  border: 1px solid cadetblue;
+  border-radius: 5px;
+  color: cadetblue;
+  display: flex;
+  flex-flow: column;
+  padding: 10px;
+  margin: 0.5%;
+  width: 49%;
+}
+
+@media (max-width: 768px) {
+  .board__notes-list__item {
+    margin: 0 0 20px 0;
+    width: 100%;
+  }
+
+  .board__notes-list__item:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.board__notes-list__item__data-row {
+  display: flex;
+}
+
+.board__notes-list__item__data-row:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.board__notes-list__item__data-row__key {
+  margin-right: 5px;
+}

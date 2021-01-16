@@ -1,0 +1,11 @@
+.primary-label {
+  color: cadetblue;
+}
+
+.bold-label {
+  font-weight: 600;
+}
+
+.italic-label {
+  font-style: italic;
+}
