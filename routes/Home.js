@@ -1,5 +1,5 @@
 const AbstractRoute = require('./AbstractRoute');
-const HomeController = require('../controllers/HomeController');
+const HomeController = require('../controllers/Home');
 
 class Home extends AbstractRoute {
   constructor(route, parentRoute) {

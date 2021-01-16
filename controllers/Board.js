@@ -1,4 +1,4 @@
-const { notes } = require('../database/notes');
+const database = require('../database/database');
 
 class BoardController {
   constructor(route, parentRoute) {
@@ -10,7 +10,7 @@ class BoardController {
     res.render('board', {
       path: `${this.parentRoute || ''}${this.route}`,
       contentTitle: 'Stored Notes',
-      notes: notes,
+      notes: database.notes,
     });
   };
 }
