@@ -26,6 +26,7 @@ class NotesController {
       bold,
       italic,
     });
+    //TO-DO: Return created note.
     res.status(200).json({ message: 'Note created successfully.' });
   };
 
