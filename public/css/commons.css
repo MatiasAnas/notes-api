@@ -9,3 +9,47 @@
 .italic-label {
   font-style: italic;
 }
+
+.button-ghost {
+  background-color: transparent;
+  border: 2px solid cadetblue;
+  border-radius: 5px;
+  color: cadetblue;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.button-ghost:hover,
+.button-ghost:focus {
+  background-color: white;
+  outline: none;
+}
+
+.checkbox {
+  appearance: none;
+  background-color: white;
+  border: 2px solid cadetblue;
+  cursor: pointer;
+  height: 30px;
+  outline: none;
+  position: relative;
+  width: 30px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+}
+
+.checkbox:checked {
+  background-color: cadetblue;
+}
+
+.checkbox:before {
+  color: white;
+  content: '\2713';
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(2);
+}
