@@ -1,6 +1,7 @@
 const express = require('express');
 
 const HTMLNotFoundController = require('./controllers/HTMLNotFound');
+const JSONNotFoundController = require('./controllers/JSONNotFound');
 
 const routesConfig = require('./constants/routes');
 const routeParser = require('./utils/routesParser');
@@ -13,7 +14,8 @@ class Server {
   constructor(port) {
     this.port = port;
     this.app = express();
-    this.notFoundController = new HTMLNotFoundController();
+    this.frontNotFoundController = new HTMLNotFoundController();
+    this.apiNotFoundController = new JSONNotFoundController();
   }
 
   listen = () => {
@@ -34,8 +36,9 @@ class Server {
         : this.app.use(route.getHandlers());
     });
 
-    // Not Found Page.
-    this.app.use(this.notFoundController.handleNotFound);
+    // Not Found.
+    this.app.use('/api', this.apiNotFoundController.handleNotFound);
+    this.app.use('/', this.frontNotFoundController.handleNotFound);
 
     // Load Config
     runtimeConfig.load((err) => {
