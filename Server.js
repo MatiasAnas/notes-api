@@ -1,6 +1,6 @@
 const express = require('express');
 
-const NotFoundController = require('./controllers/NotFound');
+const HTMLNotFoundController = require('./controllers/HTMLNotFound');
 
 const routesConfig = require('./constants/routes');
 const routeParser = require('./utils/routesParser');
@@ -13,7 +13,7 @@ class Server {
   constructor(port) {
     this.port = port;
     this.app = express();
-    this.notFoundController = new NotFoundController();
+    this.notFoundController = new HTMLNotFoundController();
   }
 
   listen = () => {

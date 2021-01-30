@@ -1,10 +1,10 @@
 const database = require('../database/database');
-const NotFoundController = require('./NotFound');
+const JSONNotFoundController = require('./JSONNotFound');
 const { HTTP_STATUS_CODES } = require('../constants/http');
 
 class Notes {
   constructor() {
-    this.notFoundController = new NotFoundController();
+    this.notFoundController = new JSONNotFoundController();
   }
 
   getNote = (req, res, next) => {

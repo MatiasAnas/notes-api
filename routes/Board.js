@@ -1,7 +1,7 @@
-const AbstractRoute = require('./AbstractRoute');
+const AbstractFrontRoute = require('./AbstractFrontRoute');
 const BoardController = require('../controllers/Board');
 
-class Board extends AbstractRoute {
+class Board extends AbstractFrontRoute {
   constructor(route, parentRoute) {
     super(route, parentRoute);
     this.boardController = new BoardController(route, parentRoute);

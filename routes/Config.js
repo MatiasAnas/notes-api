@@ -1,7 +1,7 @@
-const AbstractRoute = require('./AbstractRoute');
+const AbstractFrontRoute = require('./AbstractFrontRoute');
 const ConfigController = require('../controllers/Config');
 
-class Config extends AbstractRoute {
+class Config extends AbstractFrontRoute {
   constructor(route, parentRoute) {
     super(route, parentRoute);
     this.configController = new ConfigController(route, parentRoute);
