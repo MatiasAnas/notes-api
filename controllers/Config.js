@@ -1,3 +1,6 @@
+const { HTTP_STATUS_CODES } = require('../constants/http');
+const runtimeConfig = require('../config/runtime');
+
 class Config {
   constructor(route, parentRoute) {
     this.route = route;
@@ -5,17 +8,28 @@ class Config {
   }
 
   getConfigView = (_req, res, _next) => {
+    const { apiDelayInMS, enableApiRequestLogs } = runtimeConfig.getConfig();
     res.render('config', {
       path: `${this.parentRoute || ''}${this.route}`,
       contentTitle: 'Api Configuration',
+      apiDelayInMS,
+      checkedRequesLogs: enableApiRequestLogs ? 'checked' : '',
     });
   };
 
   postConfiguration = (req, res, _next) => {
-    // TO-DO: Store this configuration in a runtimeConfig.json file on the root dir, and update the runtime app.
-    console.log(`Delay: ${req.body.delayInMS}`);
-    console.log(`Request Logs: ${req.body.enableRequestLogs || 'off'}`);
-    res.redirect('/');
+    const { apiDelayInMS, enableApiRequestLogs } = req.body;
+    const newRuntimeConfig = {
+      apiDelayInMS: parseInt(apiDelayInMS, 10),
+      enableApiRequestLogs: enableApiRequestLogs === 'on',
+    };
+    runtimeConfig.setConfig(newRuntimeConfig, (err) => {
+      if (err)
+        res
+          .status(HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR)
+          .json({ message: 'Internal Server Error' });
+      else res.redirect('/');
+    });
   };
 }
 

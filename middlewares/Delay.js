@@ -1,9 +1,10 @@
-const { REQUEST_DELAY_IN_MS } = require('../constants/server');
+const runtimeConfig = require('../config/runtime');
 
 class Delay {
   handleRequest = (_req, _res, next) => {
-    if (REQUEST_DELAY_IN_MS === 0) next();
-    else setTimeout(() => next(), REQUEST_DELAY_IN_MS);
+    const { apiDelayInMS } = runtimeConfig.getConfig();
+    if (apiDelayInMS === 0) next();
+    else setTimeout(() => next(), apiDelayInMS);
   };
 }
 

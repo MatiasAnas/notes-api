@@ -7,6 +7,8 @@ const routeParser = require('./utils/routesParser');
 
 const middlewaresConfig = require('./constants/middlewares');
 
+const runtimeConfig = require('./config/runtime');
+
 class Server {
   constructor(port) {
     this.port = port;
@@ -35,8 +37,12 @@ class Server {
     // Not Found Page.
     this.app.use(this.notFoundController.handleNotFound);
 
-    // Start the server.
-    this.app.listen(this.port, this.handleListening);
+    // Load Config
+    runtimeConfig.load((err) => {
+      // Start the server.
+      if (err) console.log(err);
+      else this.app.listen(this.port, this.handleListening);
+    });
   };
 
   handleListening = () =>
