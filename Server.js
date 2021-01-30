@@ -19,30 +19,40 @@ class Server {
   }
 
   listen = () => {
-    // Templating Engine.
+    this.setTemplatingEngine();
+    this.setMiddlewares();
+    this.setRoutes();
+    this.setNotFoundHandlers();
+    this.start();
+  };
+
+  setTemplatingEngine = () => {
     this.app.set('view engine', 'ejs');
     this.app.set('views', 'views');
+  };
 
-    // Middlewares.
+  setMiddlewares = () => {
     middlewaresConfig.forEach((middleware) => {
       if (middleware.path) this.app.use(middleware.path, middleware.handler);
       else this.app.use(middleware.handler);
     });
+  };
 
-    // Routes.
+  setRoutes = () => {
     routeParser(routesConfig).forEach((route) => {
       route.hasParentRoute()
         ? this.app.use(route.getParentRoute(), route.getHandlers())
         : this.app.use(route.getHandlers());
     });
+  };
 
-    // Not Found.
+  setNotFoundHandlers = () => {
     this.app.use('/api', this.apiNotFoundController.handleNotFound);
     this.app.use('/', this.frontNotFoundController.handleNotFound);
+  };
 
-    // Load Config
+  start = () => {
     runtimeConfig.load((err) => {
-      // Start the server.
       if (err) console.log(err);
       else this.app.listen(this.port, this.handleListening);
     });
