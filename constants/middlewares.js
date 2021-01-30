@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const LogRequestMiddleware = require('../middlewares/LogRequest');
-const DelayMiddleware = require('../middlewares/Delay');
+const logRequestMiddleware = require('../middlewares/logRequest');
+const delayMiddleware = require('../middlewares/delay');
 
 module.exports = [
   {
@@ -13,11 +13,11 @@ module.exports = [
   },
   {
     path: '/api',
-    handler: new LogRequestMiddleware().handleRequest,
+    handler: logRequestMiddleware,
   },
   {
     path: '/api',
-    handler: new DelayMiddleware().handleRequest,
+    handler: delayMiddleware,
   },
   {
     handler: express.static(path.join(__dirname, '..', 'public')),
