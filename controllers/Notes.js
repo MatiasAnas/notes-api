@@ -10,7 +10,7 @@ class Notes {
   getNote = (req, res, next) => {
     const noteId = parseInt(req.params.noteId, 10);
     const note = database.notes.find((note) => note.id === noteId);
-    if (note) res.json(note);
+    if (note) res.status(HTTP_STATUS_CODES.OK).json(note);
     else this.notFoundController.handleNotFound(req, res, next);
   };
 
@@ -27,7 +27,7 @@ class Notes {
       bold,
       italic,
     });
-    res.status(HTTP_STATUS_CODES.OK).json({
+    res.status(HTTP_STATUS_CODES.CREATED).json({
       message: 'Note created successfully.',
       note: {
         id: newId,
@@ -69,9 +69,11 @@ class Notes {
       const pageNumber = parseInt(req.query.pageNumber, 10);
       const pageSize = parseInt(req.query.pageSize, 10);
       const startIndex = (pageNumber - 1) * pageSize;
-      res.json(database.notes.slice(startIndex, startIndex + pageSize));
+      res
+        .status(HTTP_STATUS_CODES.OK)
+        .json(database.notes.slice(startIndex, startIndex + pageSize));
     } else {
-      res.json(database.notes);
+      res.status(HTTP_STATUS_CODES.OK).json(database.notes);
     }
   };
 
