@@ -12,7 +12,13 @@ class Note extends AbstractApiRoute {
   };
 
   handlePut = (req, res, next) => {
-    this.notesController.updateNote(req, res, next);
+    const replaceAllFields = true;
+    this.notesController.updateNote(req, res, next, replaceAllFields);
+  };
+
+  handlePatch = (req, res, next) => {
+    const replaceAllFields = false;
+    this.notesController.updateNote(req, res, next, replaceAllFields);
   };
 
   handleDelete = (req, res, next) => {

@@ -60,6 +60,16 @@ module.exports = [
                   .isString()
                   .withMessage('Content should be a string.'),
               ],
+              patchValidations: [
+                body('title')
+                  .optional()
+                  .isString()
+                  .withMessage('Title should be a string.'),
+                body('content')
+                  .optional()
+                  .isString()
+                  .withMessage('Content should be a string.'),
+              ],
             },
             RouteClass: Note,
           },

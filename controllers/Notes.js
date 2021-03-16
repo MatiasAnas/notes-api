@@ -48,7 +48,7 @@ class Notes {
     });
   };
 
-  updateNote = (req, res, next) => {
+  updateNote = (req, res, next, replaceAllFields) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res
@@ -63,7 +63,17 @@ class Notes {
       database.notes = database.notes.map((note) =>
         note.id !== noteId
           ? note
-          : { ...note, title, content, bold: !!bold, italic: !!italic }
+          : {
+              ...note,
+              ...(replaceAllFields || title ? { title } : {}),
+              ...(replaceAllFields || content ? { content } : {}),
+              ...(replaceAllFields || (bold !== null && bold !== undefined)
+                ? { bold: !!bold }
+                : {}),
+              ...(replaceAllFields || (italic !== null && italic !== undefined)
+                ? { italic: !!italic }
+                : {}),
+            }
       );
       res
         .status(HTTP_STATUS_CODES.OK)
