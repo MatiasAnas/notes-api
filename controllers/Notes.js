@@ -64,8 +64,15 @@ class Notes {
     } else this.notFoundController.handleNotFound(req, res, next);
   };
 
-  getNotes = (_req, res, _next) => {
-    res.json(database.notes);
+  getNotes = (req, res, _next) => {
+    if (req.query.pageNumber && req.query.pageSize) {
+      const pageNumber = parseInt(req.query.pageNumber, 10);
+      const pageSize = parseInt(req.query.pageSize, 10);
+      const startIndex = (pageNumber - 1) * pageSize;
+      res.json(database.notes.slice(startIndex, startIndex + pageSize));
+    } else {
+      res.json(database.notes);
+    }
   };
 
   deleteNotes = (_req, res, _next) => {
