@@ -2,8 +2,8 @@ const AbstractApiRoute = require('./AbstractApiRoute');
 const NotesController = require('../controllers/Notes');
 
 class Note extends AbstractApiRoute {
-  constructor(route, parentRoute) {
-    super(route, parentRoute);
+  constructor(route, parentRoute, validations) {
+    super(route, parentRoute, validations);
     this.notesController = new NotesController();
   }
 

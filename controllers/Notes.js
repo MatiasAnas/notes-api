@@ -1,3 +1,5 @@
+const { validationResult } = require('express-validator');
+
 const database = require('../database/database');
 const JSONNotFoundController = require('./JSONNotFound');
 const { HTTP_STATUS_CODES } = require('../constants/http');
@@ -15,6 +17,13 @@ class Notes {
   };
 
   createNote = (req, res, _next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res
+        .status(HTTP_STATUS_CODES.BAD_REQUEST)
+        .json({ errors: errors.array() });
+      return;
+    }
     const { title, content, bold, italic } = req.body;
     const newId =
       database.notes.length === 0
@@ -24,8 +33,8 @@ class Notes {
       id: newId,
       title,
       content,
-      bold,
-      italic,
+      bold: !!bold,
+      italic: !!italic,
     });
     res.status(HTTP_STATUS_CODES.CREATED).json({
       message: 'Note created successfully.',
@@ -33,19 +42,28 @@ class Notes {
         id: newId,
         title,
         content,
-        bold,
-        italic,
+        bold: !!bold,
+        italic: !!italic,
       },
     });
   };
 
   updateNote = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res
+        .status(HTTP_STATUS_CODES.BAD_REQUEST)
+        .json({ errors: errors.array() });
+      return;
+    }
     const noteId = parseInt(req.params.noteId, 10);
     const note = database.notes.find((note) => note.id === noteId);
     if (note) {
       const { title, content, bold, italic } = req.body;
       database.notes = database.notes.map((note) =>
-        note.id !== noteId ? note : { ...note, title, content, bold, italic }
+        note.id !== noteId
+          ? note
+          : { ...note, title, content, bold: !!bold, italic: !!italic }
       );
       res
         .status(HTTP_STATUS_CODES.OK)

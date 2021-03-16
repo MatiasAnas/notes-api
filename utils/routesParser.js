@@ -6,7 +6,7 @@ const routeParser = (routes, parentPath) => {
         ? routeParser(route.subRoutes, `${parentPath}${route.path}`)
         : []),
       ...(route.RouteClass
-        ? [new route.RouteClass(route.path, parentPath)]
+        ? [new route.RouteClass(route.path, parentPath, route.validations)]
         : []),
     ],
     []
