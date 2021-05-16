@@ -6,6 +6,10 @@
   font-weight: 600;
 }
 
+.underline-label {
+  text-decoration: underline;
+}
+
 .italic-label {
   font-style: italic;
 }
