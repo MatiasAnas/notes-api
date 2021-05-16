@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const compression = require('compression');
 
 const logRequestMiddleware = require('../middlewares/logRequest');
 const delayMiddleware = require('../middlewares/delay');
@@ -15,6 +16,9 @@ module.exports = [
   },
   {
     handler: helmet(),
+  },
+  {
+    handler: compression(),
   },
   {
     handler: (req, res, next) => {
