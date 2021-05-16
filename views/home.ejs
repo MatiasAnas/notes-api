@@ -21,7 +21,6 @@
 }
       </code>
 
-
       <span class="primary-label bold-label">GET: /api/notes</span>
       <span class="primary-label">It returns all the stored notes.</span>
       <span class="primary-label underline-label">Sample response:</span>
@@ -43,6 +42,8 @@
   }
 ]
       </code>
+      <span class="primary-label">It accepts pageNumber and pageSize query parameters for pagination (integers).</span>
+      <span class="primary-label">If they are not provided, all the notes are returned.</span>
 
       <span class="primary-label bold-label">POST: /api/notes</span>
       <span class="primary-label">Creates a note.</span>
