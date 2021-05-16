@@ -2,8 +2,8 @@ const AbstractRoute = require('./AbstractRoute');
 const HTMLNotFoundController = require('../controllers/HTMLNotFound');
 
 class AbstractFrontRoute extends AbstractRoute {
-  constructor(route, parentRoute) {
-    super(route, parentRoute);
+  constructor(route, parentRoute, validations) {
+    super(route, parentRoute, validations);
     this.notFoundController = new HTMLNotFoundController();
   }
 

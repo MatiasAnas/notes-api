@@ -1,3 +1,5 @@
+const { validationResult } = require('express-validator');
+
 const { HTTP_STATUS_CODES } = require('../constants/http');
 const runtimeConfig = require('../config/runtime');
 
@@ -18,6 +20,13 @@ class Config {
   };
 
   postConfiguration = (req, res, _next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res
+        .status(HTTP_STATUS_CODES.BAD_REQUEST)
+        .json({ errors: errors.array() });
+      return;
+    }
     const { apiDelayInMS, enableApiRequestLogs } = req.body;
     const newRuntimeConfig = {
       apiDelayInMS: parseInt(apiDelayInMS, 10),
