@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 
 const { HTTP_STATUS_CODES } = require('../constants/http');
+const { MAX_API_DELAY_IN_MS } = require('../constants/config');
 const runtimeConfig = require('../config/runtime');
 
 class Config {
@@ -15,6 +16,7 @@ class Config {
       path: `${this.parentRoute || ''}${this.route}`,
       contentTitle: 'Api Configuration',
       apiDelayInMS,
+      maxApiDelayInMS: MAX_API_DELAY_IN_MS,
       checkedRequesLogs: enableApiRequestLogs ? 'checked' : '',
     });
   };

@@ -10,7 +10,7 @@
   <form class="config__form" action="/config" method="POST">
     <div class="config__form__form-control">
         <label for="apiDelayInMS">Api delay (ms):</label>
-        <input class="config__form__form-control__delay" type="number" name="apiDelayInMS" id="apiDelayInMS" value="<%= apiDelayInMS %>" min="0" max="5000" required>
+        <input class="config__form__form-control__delay" type="number" name="apiDelayInMS" id="apiDelayInMS" value="<%= apiDelayInMS %>" min="0" max="<%= maxApiDelayInMS %>" required>
     </div>
     <div class="config__form__form-control">
       <label for="enableApiRequestLogs">Enable request logs:</label>
