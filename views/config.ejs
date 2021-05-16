@@ -1,0 +1,25 @@
+<%- include('includes/head-start.ejs') %>
+  <%- include('includes/default-metadata.ejs') %>
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/default-content.css">
+  <link rel="stylesheet" href="/css/config.css">
+
+<%- include('includes/body-start.ejs') %>
+  <%- include('includes/navbar.ejs') %>
+  <%- include('includes/default-content-start.ejs') %>
+  <form class="config__form" action="/config" method="POST">
+    <div class="config__form__form-control">
+        <label for="apiDelayInMS">Api delay (ms):</label>
+        <input class="config__form__form-control__delay" type="number" name="apiDelayInMS" id="apiDelayInMS" value="<%= apiDelayInMS %>" min="0" max="<%= maxApiDelayInMS %>" required>
+    </div>
+    <div class="config__form__form-control">
+      <label for="enableApiRequestLogs">Enable request logs:</label>
+      <input class="checkbox" type="checkbox" name="enableApiRequestLogs" id="enableApiRequestLogs" <%= checkedRequesLogs %>>
+    </div>
+    <div class="config__form__submit-container">
+      <button type="submit" class="button-ghost config__form__submit-button">Save</button>
+    </div>
+  </form>
+  <%- include('includes/default-content-end.ejs') %>
+
+<%- include('includes/end.ejs') %>

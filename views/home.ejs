@@ -1,0 +1,142 @@
+<%- include('includes/head-start.ejs') %>
+  <%- include('includes/default-metadata.ejs') %>
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/default-content.css">
+  <link rel="stylesheet" href="/css/home.css">
+
+<%- include('includes/body-start.ejs') %>
+  <%- include('includes/navbar.ejs') %>
+  <%- include('includes/default-content-start.ejs') %>
+    <div class="home__content">
+      <span class="primary-label">Api for practicing HTTP requests. It is a notes storage system.</span>
+
+      <span class="primary-label bold-label underline-label">Endpoints:</span>
+  
+      <span class="primary-label bold-label">GET: /api/health_check</span>
+      <span class="primary-label">It returns healthy in true if the server is online.</span>
+      <span class="primary-label underline-label">Sample response:</span>
+      <code class="primary-label home__json">
+{
+  "healthy": true
+}
+      </code>
+
+      <span class="primary-label bold-label">GET: /api/notes</span>
+      <span class="primary-label">It returns all the stored notes.</span>
+      <span class="primary-label underline-label">Sample response:</span>
+      <code class="primary-label home__json">
+[
+  {
+    "id": 0,
+    "title": "Note title 1",
+    "content": "Note content 1.",
+    "bold": false,
+    "italic": false
+  },
+  {
+      "id": 1,
+      "title": "Note title 2",
+      "content": "Note content 2.",
+      "bold": true,
+      "italic": false
+  }
+]
+      </code>
+      <span class="primary-label">It accepts pageNumber and pageSize query parameters for pagination (integers).</span>
+      <span class="primary-label">If they are not provided, all the notes are returned.</span>
+
+      <span class="primary-label bold-label">POST: /api/notes</span>
+      <span class="primary-label">Creates a note.</span>
+      <span class="primary-label underline-label">Sample request body:</span>
+      <code class="primary-label home__json">
+{
+  "title": "Note title 1",
+  "content": "Note content 1.",
+  "bold": false,
+  "italic": false
+}
+      </code>
+      <span class="primary-label">If bold or italic are not specified, then, they are set to false.</span>
+      <span class="primary-label underline-label">Sample response:</span>
+      <code class="primary-label home__json">
+{
+  "message": "Note created successfully.",
+  "note": {
+      "id": 1,
+      "title": "Note title 1",
+      "content": "Note content 1.",
+      "bold": false,
+      "italic": false
+  }
+}
+      </code>
+      <span class="primary-label bold-label">DELETE: /api/notes</span>
+      <span class="primary-label">It deletes all the stored notes.</span>
+      <span class="primary-label underline-label">Sample response:</span>
+      <code class="primary-label home__json">
+{
+  "message": "Notes deleted successfully."
+}
+      </code>
+
+      <span class="primary-label bold-label">GET: /api/note/{id}</span>
+      <span class="primary-label">It returns the note specified by id.</span>
+      <span class="primary-label underline-label">Sample response:</span>
+      <code class="primary-label home__json">
+{
+  "id": 0,
+  "title": "Note title 1",
+  "content": "Note content 1.",
+  "bold": false,
+  "italic": false
+}
+      </code>
+
+      <span class="primary-label bold-label">PUT: /api/note/{id}</span>
+      <span class="primary-label">It edits the entire note specified by id.</span>
+      <span class="primary-label underline-label">Sample request body:</span>
+      <code class="primary-label home__json">
+{
+  "title": "Title edited",
+  "content": "Content edited and set to bold.",
+  "bold": true,
+  "italic": false
+}
+      </code>
+      <span class="primary-label">If bold or italic are not specified, then, they are set to false.</span>
+      <span class="primary-label underline-label">Sample response:</span>
+      <code class="primary-label home__json">
+{
+  "message": "Note updated successfully."
+}
+      </code>
+
+      <span class="primary-label bold-label">PATCH: /api/note/{id}</span>
+      <span class="primary-label">It edits partially the note specified by id.</span>
+      <span class="primary-label underline-label">Sample request body:</span>
+      <code class="primary-label home__json">
+{
+  "content": "Change the note content but not the title. Bold set to true, but italic is still the same.",
+  "bold": true
+}
+      </code>
+      <span class="primary-label">If bold or italic are not specified, then, they are not changed.</span>
+      <span class="primary-label underline-label">Sample response:</span>
+      <code class="primary-label home__json">
+{
+  "message": "Note updated successfully."
+}
+      </code>
+
+      <span class="primary-label bold-label">DELETE: /api/note/{id}</span>
+      <span class="primary-label">Deletes the note specified by id.</span>
+      <span class="primary-label underline-label">Sample response:</span>
+      <code class="primary-label home__json">
+{
+  "message": "Note deleted successfully."
+}
+      </code>
+    </div>
+  <%- include('includes/default-content-end.ejs') %>
+
+<%- include('includes/end.ejs') %>

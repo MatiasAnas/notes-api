@@ -1,0 +1,18 @@
+.navbar {
+  align-items: center;
+  background-color: cadetblue;
+  display: flex;
+  padding: 10px;
+}
+
+.navbar__item {
+  color: lightgreen;
+  font-size: x-large;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.navbar__item:hover,
+.navbar__item.active {
+  color: white;
+}

@@ -1,0 +1,27 @@
+.home__content {
+  display: flex;
+  flex-flow: column;
+  line-height: 1.5;
+}
+
+.home__json {
+  border: 1px solid cadetblue;
+  border-radius: 5px;
+  display: block;
+  margin: 10px 0;
+  padding: 0 20px;
+  white-space: pre-wrap;
+  width: 600px;
+}
+
+@media (max-width: 768px) {
+  .home__json {
+    width: 100%;
+  }
+}
+
+.home__endpoint-icon {
+  fill: cadetblue;
+  height: 20px;
+  width: 20px;
+}
