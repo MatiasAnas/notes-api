@@ -12,7 +12,7 @@ const runtimeConfig = require('./config/runtime');
 
 class Server {
   constructor(port) {
-    this.port = port;
+    this.port = process.env.PORT || port;
     this.app = express();
     this.frontNotFoundController = new HTMLNotFoundController();
     this.apiNotFoundController = new JSONNotFoundController();
