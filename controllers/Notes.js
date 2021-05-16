@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 const database = require('../database/database');
 const JSONNotFoundController = require('./JSONNotFound');
 const { HTTP_STATUS_CODES } = require('../constants/http');
+const { MAX_NOTES_IN_MEMORY } = require('../constants/notes');
 
 class Notes {
   constructor() {
@@ -22,6 +23,12 @@ class Notes {
       res
         .status(HTTP_STATUS_CODES.BAD_REQUEST)
         .json({ errors: errors.array() });
+      return;
+    }
+    if (database.notes.length >= MAX_NOTES_IN_MEMORY) {
+      res
+        .status(HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR)
+        .json({ message: 'Max number of notes in memory exceded.' });
       return;
     }
     const { title, content, bold, italic } = req.body;
