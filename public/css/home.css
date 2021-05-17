@@ -14,14 +14,12 @@
   width: 600px;
 }
 
+.home__json:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .home__json {
     width: 100%;
   }
-}
-
-.home__endpoint-icon {
-  fill: cadetblue;
-  height: 20px;
-  width: 20px;
 }
