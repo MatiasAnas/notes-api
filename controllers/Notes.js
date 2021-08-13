@@ -130,6 +130,4 @@ class Notes {
   };
 }
 
-// TO-DO: Modificar el board para que tenga las fechas y la descripcion de la api.
-
 module.exports = Notes;

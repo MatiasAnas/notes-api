@@ -31,14 +31,18 @@
     "title": "Note title 1",
     "content": "Note content 1.",
     "bold": false,
-    "italic": false
+    "italic": false,
+    "createdAt": "2021-08-13T23:46:04.435Z",
+    "updatedAt": "2021-08-13T23:46:04.435Z"
   },
   {
       "id": 1,
       "title": "Note title 2",
       "content": "Note content 2.",
       "bold": true,
-      "italic": false
+      "italic": false,
+      "createdAt": "2021-08-13T23:46:06.826Z",
+      "updatedAt": "2021-08-13T23:46:06.826Z"
   }
 ]
       </code>
@@ -66,7 +70,9 @@
       "title": "Note title 1",
       "content": "Note content 1.",
       "bold": false,
-      "italic": false
+      "italic": false,
+      "createdAt": "2021-08-13T23:46:42.953Z",
+      "updatedAt": "2021-08-13T23:46:42.953Z"
   }
 }
       </code>
@@ -88,7 +94,9 @@
   "title": "Note title 1",
   "content": "Note content 1.",
   "bold": false,
-  "italic": false
+  "italic": false,
+  "createdAt": "2021-08-13T23:46:42.953Z",
+  "updatedAt": "2021-08-13T23:46:42.953Z"
 }
       </code>
 
@@ -107,7 +115,16 @@
       <span class="primary-label underline-label">Sample response:</span>
       <code class="primary-label home__json">
 {
-  "message": "Note updated successfully."
+  "message": "Note updated successfully.",
+  "note": {
+    "id": 0,
+    "title": "Title edited",
+    "content": "Content edited and set to bold.",
+    "bold": true,
+    "italic": false,
+    "createdAt": "2021-08-13T23:46:04.435Z",
+    "updatedAt": "2021-08-13T23:48:19.113Z"
+  }
 }
       </code>
 
@@ -124,7 +141,16 @@
       <span class="primary-label underline-label">Sample response:</span>
       <code class="primary-label home__json">
 {
-  "message": "Note updated successfully."
+  "message": "Note updated successfully.",
+  "note": {
+    "id": 0,
+    "title": "Title",
+    "content": "Change the note content but not the title. Bold set to true, but italic is still the same.",
+    "bold": true,
+    "italic": false,
+    "createdAt": "2021-08-13T23:46:04.435Z",
+    "updatedAt": "2021-08-13T23:49:17.786Z"
+  }
 }
       </code>
 
