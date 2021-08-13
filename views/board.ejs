@@ -13,24 +13,28 @@
       <div class="board__notes-list">
         <% for (let note of notes) { %>
           <div class="board__notes-list__item">
-            <div class="board__notes-list__item__data-row">
-              <div class="board__notes-list__item__data-row__key bold-label">ID:</div>
-              <div><%= note.id %></div>
+            <div class="board__notes-list__main-info">
+              <div class="board__notes-list__item__data-row">
+                <div class="board__notes-list__item__data-row__key bold-label">ID:</div>
+                <div><%= note.id %></div>
+              </div>
+              <div class="board__notes-list__item__data-row">
+                <div class="board__notes-list__item__data-row__key bold-label">Title:</div>
+                <div><%= `${note.title || '# No Title'}` %></div>
+              </div>
+              <div class="board__notes-list__item__data-row">
+                <div class="<%= `${note.bold && 'bold-label'} ${note.italic && 'italic-label'}` %>"><%= `${note.content || '# No Content'}` %></div>
+              </div>
             </div>
-            <div class="board__notes-list__item__data-row">
-              <div class="board__notes-list__item__data-row__key bold-label">Title:</div>
-              <div><%= `${note.title || '# No Title'}` %></div>
-            </div>
-            <div class="board__notes-list__item__data-row">
-              <div class="<%= `${note.bold && 'bold-label'} ${note.italic && 'italic-label'}` %>"><%= `${note.content || '# No Content'}` %></div>
-            </div>
-            <div class="board__notes-list__item__data-row board__notes-list__item__data-row__date">
-              <div class="bold-label">Created At:</div>
-              <div><%= `${new Date(note.createdAt).toLocaleString()}` %></div>
-            </div>
-            <div class="board__notes-list__item__data-row board__notes-list__item__data-row__date">
-              <div class="bold-label">Updated At:</div>
-              <div><%= `${new Date(note.updatedAt).toLocaleString()}` %></div>
+            <div>
+              <div class="board__notes-list__item__data-row board__notes-list__item__data-row__date">
+                <div class="bold-label">Created At:</div>
+                <div><%= `${new Date(note.createdAt).toLocaleString()}` %></div>
+              </div>
+              <div class="board__notes-list__item__data-row board__notes-list__item__data-row__date">
+                <div class="bold-label">Updated At:</div>
+                <div><%= `${new Date(note.updatedAt).toLocaleString()}` %></div>
+              </div>
             </div>
           </div>
         <% }; %>
