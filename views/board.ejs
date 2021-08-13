@@ -19,7 +19,7 @@
             </div>
             <div class="board__notes-list__item__data-row">
               <div class="board__notes-list__item__data-row__key bold-label">Title:</div>
-              <div><%= note.title %></div>
+              <div><%= `${note.title || '# No Title'}` %></div>
             </div>
             <div class="board__notes-list__item__data-row">
               <div class="<%= `${note.bold && 'bold-label'} ${note.italic && 'italic-label'}` %>"><%= `${note.content || '# No Content'}` %></div>
