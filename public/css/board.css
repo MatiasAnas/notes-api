@@ -11,6 +11,7 @@
   color: cadetblue;
   display: flex;
   flex-flow: column;
+  justify-content: space-between;
   padding: 10px;
   margin: 0.5%;
   width: 49%;
@@ -37,4 +38,12 @@
 
 .board__notes-list__item__data-row__key {
   margin-right: 5px;
+}
+
+.board__notes-list__item__dates {
+  margin-top: 5px;
+}
+
+.board__notes-list__item__data-row__date {
+  justify-content: space-between;
 }

@@ -36,22 +36,20 @@ class Notes {
       database.notes.length === 0
         ? 0
         : database.notes[database.notes.length - 1].id + 1;
-    database.notes.push({
+    const currentDate = new Date().toISOString();
+    const newNote = {
       id: newId,
       title,
       content,
       bold: !!bold,
       italic: !!italic,
-    });
+      createdAt: currentDate,
+      updatedAt: currentDate,
+    };
+    database.notes.push(newNote);
     res.status(HTTP_STATUS_CODES.CREATED).json({
       message: 'Note created successfully.',
-      note: {
-        id: newId,
-        title,
-        content,
-        bold: !!bold,
-        italic: !!italic,
-      },
+      note: newNote,
     });
   };
 
@@ -64,27 +62,39 @@ class Notes {
       return;
     }
     const noteId = parseInt(req.params.noteId, 10);
-    const note = database.notes.find((note) => note.id === noteId);
-    if (note) {
+    const originalNote = database.notes.find((note) => note.id === noteId);
+    if (originalNote) {
       const { title, content, bold, italic } = req.body;
+      const currentDate = new Date().toISOString();
+      let modifiedNote;
+      if (replaceAllFields) {
+        modifiedNote = {
+          ...originalNote,
+          title,
+          content,
+          bold: !!bold,
+          italic: !!italic,
+          updatedAt: currentDate,
+        };
+      } else {
+        modifiedNote = {
+          ...originalNote,
+          ...(title !== null && title !== undefined ? { title } : {}),
+          ...(content !== null && content !== undefined ? { content } : {}),
+          ...(bold !== null && bold !== undefined ? { bold: !!bold } : {}),
+          ...(italic !== null && italic !== undefined
+            ? { italic: !!italic }
+            : {}),
+          updatedAt: currentDate,
+        };
+      }
       database.notes = database.notes.map((note) =>
-        note.id !== noteId
-          ? note
-          : {
-              ...note,
-              ...(replaceAllFields || title ? { title } : {}),
-              ...(replaceAllFields || content ? { content } : {}),
-              ...(replaceAllFields || (bold !== null && bold !== undefined)
-                ? { bold: !!bold }
-                : {}),
-              ...(replaceAllFields || (italic !== null && italic !== undefined)
-                ? { italic: !!italic }
-                : {}),
-            }
+        note.id === noteId ? modifiedNote : note
       );
-      res
-        .status(HTTP_STATUS_CODES.OK)
-        .json({ message: 'Note updated successfully.' });
+      res.status(HTTP_STATUS_CODES.OK).json({
+        message: 'Note updated successfully.',
+        note: modifiedNote,
+      });
     } else this.notFoundController.handleNotFound(req, res, next);
   };
 
