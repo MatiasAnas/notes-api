@@ -28,10 +28,6 @@
   }
 }
 
-.board__notes-list__main-info {
-  margin-bottom: 5px;
-}
-
 .board__notes-list__item__data-row {
   display: flex;
 }
@@ -42,6 +38,10 @@
 
 .board__notes-list__item__data-row__key {
   margin-right: 5px;
+}
+
+.board__notes-list__item__dates {
+  margin-top: 5px;
 }
 
 .board__notes-list__item__data-row__date {
